@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Día del Padre! Mi Héroe Gamer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --portal-blue: #007bff;
+            --portal-orange: #ff6600;
+            --cod-green: #306b34;
+            --cod-dark: #1a1a1a;
+            --overcooked-red: #e74c3c;
+            --overcooked-yellow: #f1c40f;
+            --text-light: #f4f4f4;
+            --text-dark: #333;
+            --background-dark: #222;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            text-align: center;
+            overflow-x: hidden; /* Prevent horizontal scroll for animations */
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--portal-blue) 0%, var(--portal-orange) 100%);
+            padding: 20px 0;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 20px;
+            animation: headerGlow 2s infinite alternate;
+        }
+
+        @keyframes headerGlow {
+            from { box-shadow: 0 0 10px var(--portal-blue); }
+            to { box-shadow: 0 0 20px var(--portal-orange); }
+        }
+
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            color: var(--text-light);
+            text-shadow: 3px 3px var(--cod-dark);
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .game-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .game-card {
+            background-color: var(--cod-dark);
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 30%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-card h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .portal h3 { color: var(--portal-blue); }
+        .cod h3 { color: var(--cod-green); }
+        .overcooked h3 { color: var(--overcooked-yellow); }
+
+        .game-card p {
+            font-size: 0.95em;
+            color: var(--text-light);
+            text-align: justify;
+        }
+
+        .portal { border-left: 5px solid var(--portal-blue); }
+        .cod { border-left: 5px solid var(--cod-green); }
+        .overcooked { border-left: 5px solid var(--overcooked-red); }
+
+        .portal::before, .portal::after {
+            content: '';
+            position: absolute;
+            background-color: var(--portal-orange);
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: pulsePortal 2s infinite alternate;
+        }
+        .portal::before { top: -20px; left: -20px; width: 60px; height: 60px; }
+        .portal::after { bottom: -20px; right: -20px; width: 80px; height: 80px; animation-delay: 0.5s; }
+
+        @keyframes pulsePortal {
+            from { transform: scale(0.8); opacity: 0.1; }
+            to { transform: scale(1.2); opacity: 0.3; }
+        }
+
+        .cod::before {
+            content: '🔫'; /* Weapon icon */
+            font-size: 3em;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            opacity: 0.1;
+            transform: rotate(20deg);
+        }
+
+        .overcooked::before {
+            content: '🔪'; /* Knife icon */
+            font-size: 3em;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            opacity: 0.1;
+            transform: rotate(-20deg);
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: var(--cod-dark);
+            border-radius: 0 0 10px 10px;
+            font-size: 0.9em;
+            color: var(--text-light);
+            border-top: 1px dashed var(--cod-green);
+        }
+
+        .portal-animation {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: transparent;
+            border-radius: 50%;
+            animation: portalMove 10s infinite linear;
+            z-index: 0;
+            opacity: 0.1;
+        }
+
+        .portal-animation.blue {
+            border: 5px solid var(--portal-blue);
+            left: -50px;
+            top: 20%;
+        }
+
+        .portal-animation.orange {
+            border: 5px solid var(--portal-orange);
+            right: -50px;
+            bottom: 30%;
+            animation-delay: 5s;
+        }
+
+        @keyframes portalMove {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(100px, 50px); }
+            50% { transform: translate(200px, 0); }
+            75% { transform: translate(100px, -50px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .container {
+                margin: 20px;
+                padding: 15px;
+            }
+            .game-card {
+                max-width: 100%;
+            }
+            .game-section {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="portal-animation blue"></div>
+        <div class="portal-animation orange"></div>
+
+        <header>
+            <h1>¡Feliz Día del Padre! Mi Héroe Inmortal</h1>
+        </header>
+
+        <p>
+            Papitown, hoy quiero celebrar no solo al genial padre que eres, sino también al compañero de aventuras, que siempre me ha acompañado. Eres el MVP en la vida, y aunque no necesitemos un portal para viajar por el tiempo, cada momento contigo es una nueva dimensión de diversión.
+        </p>
+
+        <div class="game-section">
+            <div class="game-card portal">
+                <h3>como en Portal</h3>
+                <p>
+                    Contigo, papá, no hay problema que no podamos atravesar. Como en Portal, siempre encuentras la manera de ver las cosas desde un ángulo diferente, abriendo caminos donde otros solo ven paredes. Tu ingenio me ha enseñado a pensar fuera de la caja y a buscar la solución más creativa, incluso cuando el pastel es una mentira. Eres como GLaDOS personal, pero sin la maldad y con mucho más cariño
+                </p>
+            </div>
+
+            <div class="game-card cod">
+                <h3>echando plomo como si fuera Call of Duty</h3>
+                <p>
+                    En la vida, has sido mi mejor compañero de escuadrón. Ya sea enfrentando desafíos grandes o pequeños, siempre estás a mi lado, cubriéndome la espalda. Contigo, me siento listo para cualquier misión. Gracias por enseñarme la importancia de la paciencia, la perseverancia y por ser siempre el que me revive cuando la situación se pone difícil.
+                </p>
+            </div>
+
+            <div class="game-card overcooked">
+                <h3>cuando el estrés puede más como Overcooked</h3>
+                <p>
+                    Nuestras vidas a veces son como una cocina de Overcooked: caótica, llena de retos inesperados, pero siempre culminando en algo delicioso y lleno de risas en la mayoría de los casos. Contigo, incluso el desastre se convierte en una anécdota divertida.Gracias por todas las comidas que me has invitado y las risas que nunca faltan eh?
+                </p>
+            </div>
+        </div>
+
+        <p style="margin-top: 30px;">
+            En cada juego, en cada desafío y en cada risa, sé que tengo al mejor padre del mundo. Gracias por ser tú, por tu cariño  incondicional y por todas las increíbles memorias que hemos creado y seguiremos creando.
+        </p>
+
+        <footer>
+            <p>Con todo mi cariño en este Día del Padre. ❤️</p>
+            <p>Diseñado con amor por tu hijo gamer cocho locho tremendocho</p>
+        </footer>
+    </div>
+</body>
+</html>
